@@ -8,10 +8,10 @@ purchase all of the shares in the portfolio.
 import gzip
 
 
-def purchase_cost() -> None:
+def purchase_cost(filename) -> None:
     # Uncomment to open the gzip file instead
     # with gzip.open("data/portfolio.csv.gz", "rt") as list_stocks:
-    with open("data/portfolio.csv") as list_stocks:
+    with open(filename) as list_stocks:
         total_cost = 0
 
         next(list_stocks)
