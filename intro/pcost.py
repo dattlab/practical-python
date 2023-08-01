@@ -9,7 +9,7 @@ import gzip
 import csv
 
 
-def purchase_cost(filename: str) -> None:
+def purchase_cost(filename: str) -> float:
     # Uncomment to open the gzip file instead
     # with gzip.open(filename, "rt") as list_stocks:
     with open(filename) as list_stocks:
