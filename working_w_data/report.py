@@ -24,6 +24,7 @@ def read_portfolio(filename: str) -> list[dict]:
     with open(filename) as stocks:
         list_stocks = csv.reader(stocks)
 
+        next(list_stocks)
         for stock in list_stocks:
             portfolio_list.append(
                 {
