@@ -49,3 +49,32 @@ def read_prices(filename: str) -> dict:
 
     return prices_dict
 
+
+def compute_profit(stock_data_file: str, price_data_file: str) -> tuple:
+    stock_data: list[dict] = read_portfolio(stock_data_file)
+    price_data: dict = read_prices(price_data_file)
+    portfolio_purchase_value = purchase_cost(stock_data_file)
+
+    loss = 0
+    gain = 0
+
+    for stock in stock_data:
+        purchase_price = float(stock["price"])
+        curr_price = price_data[stock["name"]]
+
+        stock_gain = (curr_price - purchase_price) / purchase_price
+
+        if stock_gain > 0:
+            gain += stock_gain
+        else:
+            loss += stock_gain
+
+    portfolio_curr_value = portfolio_purchase_value * (loss + gain)
+
+    return (
+        round(portfolio_purchase_value, 2),
+        round(portfolio_curr_value, 2),
+        round(loss * 100, 2),
+        round(gain * 100, 2),
+    )
+
