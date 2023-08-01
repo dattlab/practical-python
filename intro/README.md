@@ -1,6 +1,9 @@
 # Some notes
 
 - `float` in Python is the same as the `double` type in C language as it is represented as double precision using IEEE 754
+- `str.rfind()` and `str.rindex()` are the same, but `rfind()` returns `-1` if the target substring is not found, while `rindex()` throws an exception.
+- Strings in Python are **immutable**
+- Operations on strings create an entirely new string each time
 
 ## Answers to some exercises
 
