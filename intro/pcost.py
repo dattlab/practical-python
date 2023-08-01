@@ -6,18 +6,19 @@ purchase all of the shares in the portfolio.
 """
 
 import gzip
+import csv
 
 
-def purchase_cost(filename) -> None:
+def purchase_cost(filename: str) -> None:
     # Uncomment to open the gzip file instead
     # with gzip.open(filename, "rt") as list_stocks:
     with open(filename) as list_stocks:
         total_cost = 0
-
+        list_stocks = csv.reader(list_stocks)
         next(list_stocks)
         for stock in list_stocks:
             try:
-                _, num_shares, purchase_price = stock.split(",")
+                _, num_shares, purchase_price = stock
                 total_cost += (float(purchase_price) * int(num_shares))
             except ValueError:
                 print("There are some missing fields. Skipping them...")
