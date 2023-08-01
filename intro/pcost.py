@@ -5,8 +5,12 @@ that opens this file, reads all lines, and calculates how much it cost to
 purchase all of the shares in the portfolio.
 """
 
+import gzip
+
 
 def purchase_cost() -> None:
+    # Uncomment to open the gzip file instead
+    # with gzip.open("data/portfolio.csv.gz", "rt") as list_stocks:
     with open("data/portfolio.csv") as list_stocks:
         total_cost = 0
 
