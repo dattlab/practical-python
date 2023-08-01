@@ -18,7 +18,7 @@ def purchase_cost(filename: str) -> float:
     return total_cost 
 
 
-def read_portfolio(filename: str) -> list[tuple]:
+def read_portfolio(filename: str) -> list[dict]:
     portfolio_list = []
 
     with open(filename) as stocks:
@@ -26,8 +26,25 @@ def read_portfolio(filename: str) -> list[tuple]:
 
         for stock in list_stocks:
             portfolio_list.append(
-                (stock[0], stock[1], stock[2])
+                {
+                    "name": stock[0],
+                    "shares": stock[1],
+                    "price": stock[2]
+                }
             )
 
     return portfolio_list
+
+
+def read_prices(filename: str) -> dict:
+    prices_dict = {}
+
+    with open(filename) as f:
+        list_prices = csv.reader(f)
+
+        for price in list_prices:
+            if len(price):
+                prices_dict[price[0]] = float(price[1])
+
+    return prices_dict
 
