@@ -78,3 +78,31 @@ def compute_profit(stock_data_file: str, price_data_file: str) -> tuple:
         round(gain * 100, 2),
     )
 
+
+def make_report(stock_data_file: str, price_data_file: str) -> list[tuple]:
+    stock_data: list[dict] = read_portfolio(stock_data_file)
+    price_data: dict = read_prices(price_data_file)
+
+    report = []
+    for stock in stock_data:
+        purchase_price = float(stock["price"])
+        curr_price = price_data[stock["name"]]
+
+        change = curr_price - purchase_price
+
+        report.append((
+            stock["name"], int(stock["shares"]),
+            float(curr_price), float(change)
+        ))
+
+    return report
+
+
+def display_price_change(stock_data_file: str, price_data_file: str) -> None:
+    report = make_report(stock_data_file, price_data_file)
+
+    print(f"{'Name':>10s} {'Shares':>10s} {'Price':>10s} {'Change':>10s}")
+    print(f"{'':->10s} {'':->10s} {'':->10s} {'':->10s}")
+    for stock_report in report:
+        print("%10s %10d %10.2f %10.2f" % stock_report)
+
